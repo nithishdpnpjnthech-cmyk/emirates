@@ -9,20 +9,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping
+    @GetMapping("/products")
     public List<Product> getAllProducts(
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String metalType) {
 
         if (category != null && metalType != null) {
-            // Need to add this to repository if needed, but for now simple filter
             return productService.getAllProducts().stream()
                     .filter(p -> p.getCategory().equalsIgnoreCase(category)
                             && p.getMetalType().equalsIgnoreCase(metalType))
@@ -35,7 +34,17 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{metalType:gold|diamond}/{category}")
+    public List<Product> getProductsByPath(
+            @PathVariable String metalType,
+            @PathVariable String category) {
+        return productService.getAllProducts().stream()
+                .filter(p -> p.getCategory().equalsIgnoreCase(category)
+                        && p.getMetalType().equalsIgnoreCase(metalType))
+                .toList();
+    }
+
+    @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
         return product != null ? ResponseEntity.ok(product) : ResponseEntity.notFound().build();

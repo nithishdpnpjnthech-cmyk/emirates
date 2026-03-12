@@ -11,6 +11,7 @@ const api = axios.create({
 
 export const productService = {
     getAllProducts: (params) => api.get('/products', { params }),
+    getProductsByPath: (metalType, category) => api.get(`/${metalType.toLowerCase()}/${category.toLowerCase()}`),
     getProductById: (id) => api.get(`/products/${id}`),
 };
 

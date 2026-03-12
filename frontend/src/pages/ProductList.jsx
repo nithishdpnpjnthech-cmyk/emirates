@@ -37,7 +37,12 @@ const ProductList = ({ metalType: propMetalType }) => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const response = await productService.getAllProducts({ category, metalType });
+        let response;
+        if (metalType && category) {
+          response = await productService.getProductsByPath(metalType, category);
+        } else {
+          response = await productService.getAllProducts({ category, metalType });
+        }
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
