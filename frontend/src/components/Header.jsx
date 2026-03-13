@@ -468,9 +468,27 @@ const Header = () => {
         .collection-mega-menu-item:hover img {
           transform: scale(1.05);
         }
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
+          .menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: var(--color-primary);
+            z-index: 1001;
+          }
           .nav-links {
             display: none;
+            position: fixed;
+            top: 70px; /* logo/nav height */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: #fff;
+            z-index: 1000;
+            flex-direction: column;
+            gap: 0;
           }
           .nav-links.open {
             display: block;
