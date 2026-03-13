@@ -6,6 +6,24 @@ import GoldRateModal from './GoldRateModal';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isGoldRateOpen, setIsGoldRateOpen] = useState(false);
+  const [activeMobileDropdown, setActiveMobileDropdown] = useState(null);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    setActiveMobileDropdown(null);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setActiveMobileDropdown(null);
+  };
+
+  const toggleMobileDropdown = (e, name) => {
+    if (window.innerWidth <= 992) {
+      e.preventDefault();
+      setActiveMobileDropdown(activeMobileDropdown === name ? null : name);
+    }
+  };
 
   return (
     <header className="header">
@@ -30,7 +48,7 @@ const Header = () => {
       <nav className="main-nav">
         <div className="container nav-container">
           <div className="mobile-nav-left">
-            <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <div className="menu-toggle" onClick={toggleMenu}>
               {isMenuOpen ? <X /> : <Menu />}
             </div>
           </div>
@@ -42,48 +60,48 @@ const Header = () => {
           </div>
 
           <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-            <div className="nav-item has-dropdown">
-              <Link to="/gold">Gold <span className="dropdown-arrow">▼</span></Link>
+            <div className={`nav-item has-dropdown ${activeMobileDropdown === 'gold' ? 'mobile-active' : ''}`}>
+              <Link to="/gold" onClick={(e) => toggleMobileDropdown(e, 'gold')}>Gold <span className="dropdown-arrow">▼</span></Link>
               <div className="mega-menu">
                 <div className="mega-menu-content">
                   <div className="mega-menu-grid">
-                    <Link to="/gold/rings" className="mega-menu-item">
+                    <Link to="/gold/rings" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Rings-Menu.png" alt="Rings" />
                       <span>Rings</span>
                     </Link>
-                    <Link to="/gold/earrings" className="mega-menu-item">
+                    <Link to="/gold/earrings" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Earrings-Menu.png" alt="Earrings" />
                       <span>Earrings</span>
                     </Link>
-                    <Link to="/gold/pendants" className="mega-menu-item">
+                    <Link to="/gold/pendants" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Pendants-menu-1.png" alt="Pendants" />
                       <span>Pendants</span>
                     </Link>
-                    <Link to="/gold/necklaces" className="mega-menu-item">
+                    <Link to="/gold/necklaces" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Necklaces-Menu.png" alt="Necklaces" />
                       <span>Necklaces</span>
                     </Link>
-                    <Link to="/gold/haarams" className="mega-menu-item">
+                    <Link to="/gold/haarams" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Haarams.png" alt="Haarams" />
                       <span>Haarams</span>
                     </Link>
-                    <Link to="/gold/kadaas" className="mega-menu-item">
+                    <Link to="/gold/kadaas" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Kadaas-menu.png" alt="Kadaas" />
                       <span>Kadaas</span>
                     </Link>
-                    <Link to="/gold/mangalsutra" className="mega-menu-item">
+                    <Link to="/gold/mangalsutra" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Mangalsutra-menu.png" alt="Mangalsutra" />
                       <span>Mangalsutra</span>
                     </Link>
-                    <Link to="/gold/bangles" className="mega-menu-item">
+                    <Link to="/gold/bangles" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/Bangles-Menu-1.png" alt="Bangles" />
                       <span>Bangles</span>
                     </Link>
-                    <Link to="/gold/chain" className="mega-menu-item">
+                    <Link to="/gold/chain" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/gold_menu/chain.png" alt="Chain" />
                       <span>Chain</span>
                     </Link>
-                    <Link to="/gold/bracelets" className="mega-menu-item" style={{ borderBottom: 'none' }}>
+                    <Link to="/gold/bracelets" className="mega-menu-item" style={{ borderBottom: 'none' }} onClick={closeMenu}>
                       <img src="/assets/gold_menu/Bracelets.png" alt="Bracelets" />
                       <span>Bracelets</span>
                     </Link>
@@ -97,32 +115,32 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="nav-item has-dropdown">
-              <Link to="/diamond">Diamond <span className="dropdown-arrow">▼</span></Link>
+            <div className={`nav-item has-dropdown ${activeMobileDropdown === 'diamond' ? 'mobile-active' : ''}`}>
+              <Link to="/diamond" onClick={(e) => toggleMobileDropdown(e, 'diamond')}>Diamond <span className="dropdown-arrow">▼</span></Link>
               <div className="mega-menu">
                 <div className="mega-menu-content">
                   <div className="mega-menu-grid">
-                    <Link to="/diamond/rings" className="mega-menu-item">
+                    <Link to="/diamond/rings" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/diamond_menu/Rings-diamond.png" alt="Rings" />
                       <span>Rings</span>
                     </Link>
-                    <Link to="/diamond/earrings" className="mega-menu-item">
+                    <Link to="/diamond/earrings" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/diamond_menu/Earrings-diamond.png" alt="Earrings" />
                       <span>Earrings</span>
                     </Link>
-                    <Link to="/diamond/pendants" className="mega-menu-item">
+                    <Link to="/diamond/pendants" className="mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/diamond_menu/Pendants-diamond.png" alt="Pendants" />
                       <span>Pendants</span>
                     </Link>
-                    <Link to="/diamond/necklaces" className="mega-menu-item" style={{ borderBottom: 'none' }}>
+                    <Link to="/diamond/necklaces" className="mega-menu-item" style={{ borderBottom: 'none' }} onClick={closeMenu}>
                       <img src="/assets/diamond_menu/Necklaces-diamond.png" alt="Necklaces" />
                       <span>Necklaces</span>
                     </Link>
-                    <Link to="/diamond/bangles" className="mega-menu-item" style={{ borderBottom: 'none' }}>
+                    <Link to="/diamond/bangles" className="mega-menu-item" style={{ borderBottom: 'none' }} onClick={closeMenu}>
                       <img src="/assets/diamond_menu/Bangles-Diamond.png" alt="Bangles" />
                       <span>Bangles</span>
                     </Link>
-                    <Link to="/diamond/bracelets" className="mega-menu-item" style={{ borderBottom: 'none' }}>
+                    <Link to="/diamond/bracelets" className="mega-menu-item" style={{ borderBottom: 'none' }} onClick={closeMenu}>
                       <img src="/assets/diamond_menu/brace.png" alt="Bracelets" />
                       <span>Bracelets</span>
                     </Link>
@@ -133,27 +151,27 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="nav-item has-dropdown">
-              <Link to="/collections">Collections <span className="dropdown-arrow">▼</span></Link>
+            <div className={`nav-item has-dropdown ${activeMobileDropdown === 'collections' ? 'mobile-active' : ''}`}>
+              <Link to="/collections" onClick={(e) => toggleMobileDropdown(e, 'collections')}>Collections <span className="dropdown-arrow">▼</span></Link>
               <div className="mega-menu">
                 <div className="mega-menu-content">
                   <div className="mega-menu-grid collections-grid">
-                    <Link to="/collections/mahathi" className="collection-mega-menu-item">
+                    <Link to="/collections/mahathi" className="collection-mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/collection_menu/mahathi.png" alt="Mahathi Antique Collection" />
                     </Link>
-                    <Link to="/collections/amuliya" className="collection-mega-menu-item">
+                    <Link to="/collections/amuliya" className="collection-mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/collection_menu/amuliya-Menu2.png" alt="Amuliya Diamonds & Gold" />
                     </Link>
-                    <Link to="/collections/bridal" className="collection-mega-menu-item">
+                    <Link to="/collections/bridal" className="collection-mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/collection_menu/indian-bridal.png" alt="Indian Bridal" />
                     </Link>
-                    <Link to="/collections/ethnic" className="collection-mega-menu-item">
+                    <Link to="/collections/ethnic" className="collection-mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/collection_menu/indian-Ethnic.png" alt="Indian Ethnic" />
                     </Link>
-                    <Link to="/collections/ruby-emerald" className="collection-mega-menu-item">
+                    <Link to="/collections/ruby-emerald" className="collection-mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/collection_menu/ruby-and-Emerald-1.png" alt="Ruby and Emerald" />
                     </Link>
-                    <Link to="/collections/apsara" className="collection-mega-menu-item">
+                    <Link to="/collections/apsara" className="collection-mega-menu-item" onClick={closeMenu}>
                       <img src="/assets/collection_menu/apsara.png" alt="Apsara Rose Gold" />
                     </Link>
                   </div>
@@ -164,13 +182,13 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="nav-item has-simple-dropdown">
-              <span className="nav-link-style" style={{ cursor: 'pointer' }}>More <span className="dropdown-arrow">▼</span></span>
+            <div className={`nav-item has-simple-dropdown ${activeMobileDropdown === 'more' ? 'mobile-active' : ''}`}>
+              <span className="nav-link-style" style={{ cursor: 'pointer' }} onClick={(e) => toggleMobileDropdown(e, 'more')}>More <span className="dropdown-arrow">▼</span></span>
               <div className="simple-dropdown">
-                <Link to="/collections/bridal" className="dropdown-item">Bridal Collection</Link>
-                <Link to="/blog" className="dropdown-item">Blog</Link>
-                <Link to="/careers" className="dropdown-item">Careers</Link>
-                <Link to="/contact" className="dropdown-item">Contact Us</Link>
+                <Link to="/collections/bridal" className="dropdown-item" onClick={closeMenu}>Bridal Collection</Link>
+                <Link to="/blog" className="dropdown-item" onClick={closeMenu}>Blog</Link>
+                <Link to="/careers" className="dropdown-item" onClick={closeMenu}>Careers</Link>
+                <Link to="/contact" className="dropdown-item" onClick={closeMenu}>Contact Us</Link>
               </div>
             </div>
           </div>
@@ -512,38 +530,88 @@ const Header = () => {
             display: flex;
             align-items: center;
           }
-          .nav-links {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            flex-direction: column;
-            padding: 2rem;
-            gap: 1rem;
-            box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-          }
-          .nav-links.open {
-            display: flex;
-          }
-          .nav-container {
-            position: relative;
-            justify-content: space-between;
-          }
-          .menu-toggle {
-            display: block;
-            margin-right: 0;
-          }
-          .logo {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-left: 0;
-            z-index: 5;
-          }
           .logo img {
             height: 40px;
+          }
+
+          /* Structured Mobile Dropdowns */
+          .nav-links {
+            padding: 1.5rem 0;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+          }
+          .nav-item {
+            border-bottom: 1px solid #f9f9f9;
+            width: 100%;
+          }
+          .nav-item > a, .nav-item > .nav-link-style {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          }
+          .nav-item > a::after, .nav-item > .nav-link-style::after {
+            display: none;
+          }
+          .mega-menu, .simple-dropdown {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            box-shadow: none;
+            display: none;
+            padding: 0;
+            border: none;
+            background: #fdfdfd;
+          }
+          .nav-item.mobile-active .mega-menu,
+          .nav-item.mobile-active .simple-dropdown {
+            display: block;
+          }
+          .mega-menu-content {
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+          }
+          .mega-menu-grid {
+            grid-template-columns: repeat(2, 1fr);
+            border-top: 1px solid #f0f0f0;
+          }
+          .mega-menu-item {
+            gap: 0.8rem;
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            border-right: 1px solid #f0f0f0;
+            flex-direction: column;
+            text-align: center;
+          }
+          .mega-menu-item:nth-child(2n) {
+            border-right: none;
+          }
+          .mega-menu-item img {
+            width: 32px;
+            height: 32px;
+          }
+          .mega-menu-item span {
+            font-size: 0.95rem;
+          }
+          .mega-menu-featured {
+            display: none;
+          }
+          .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .collection-mega-menu-item {
+            margin-bottom: 0;
+          }
+          .dropdown-item {
+            padding: 0.8rem 2.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem !important;
           }
         }
       `}} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useParams } from 'react-router-dom';
+import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { productService } from '../services/api';
 import ProductCard from '../components/ProductCard';
 import { Filter, ChevronDown } from 'lucide-react';
@@ -9,28 +9,27 @@ const ProductList = ({ metalType: propMetalType }) => {
   const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const { category: urlCategory } = useParams();
+  const navigate = useNavigate();
 
   const category = urlCategory || searchParams.get('category');
   const queryMetalType = searchParams.get('metalType');
-  const metalType = propMetalType || queryMetalType;
+  const metalType = propMetalType || queryMetalType || 'Gold'; // Default to Gold if neither is present
 
   // Filter States
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedMetals, setSelectedMetals] = useState([]);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [sortBy, setSortBy] = useState('New Arrivals');
 
   const handleCategoryChange = (cat) => {
-    setSelectedCategories(prev =>
-      prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
-    );
+    const newCategory = (category === cat) ? '' : cat.toLowerCase();
+    const base = metalType.toLowerCase();
+    navigate(newCategory ? `/${base}/${newCategory}` : `/${base}`);
   };
 
   const handleMetalChange = (metal) => {
-    setSelectedMetals(prev =>
-      prev.includes(metal) ? prev.filter(m => m !== metal) : [...prev, metal]
-    );
+    const newMetal = metal.toLowerCase();
+    const cat = category ? `/${category.toLowerCase()}` : '';
+    navigate(`/${newMetal}${cat}`);
   };
 
   useEffect(() => {
@@ -68,20 +67,6 @@ const ProductList = ({ metalType: propMetalType }) => {
 
   // Apply filters and sorting
   const filteredProducts = products.filter(product => {
-    // Category filter
-    if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
-      // check if category array exists, if so check if any match
-      const pCats = Array.isArray(product.category) ? product.category : [product.category];
-      if (!pCats.some(c => selectedCategories.includes(c))) {
-        return false;
-      }
-    }
-
-    // Metal filter
-    if (selectedMetals.length > 0 && !selectedMetals.includes(product.metalType)) {
-      return false;
-    }
-
     // Price filter
     const price = product.price || 0;
     if (minPrice && price < parseFloat(minPrice)) return false;
@@ -118,7 +103,7 @@ const ProductList = ({ metalType: propMetalType }) => {
                   <label key={cat}>
                     <input
                       type="checkbox"
-                      checked={selectedCategories.includes(cat)}
+                      checked={category?.toLowerCase() === cat.toLowerCase()}
                       onChange={() => handleCategoryChange(cat)}
                     /> {cat}
                   </label>
@@ -133,7 +118,7 @@ const ProductList = ({ metalType: propMetalType }) => {
                   <label key={metal}>
                     <input
                       type="checkbox"
-                      checked={selectedMetals.includes(metal)}
+                      checked={metalType?.toLowerCase() === metal.toLowerCase()}
                       onChange={() => handleMetalChange(metal)}
                     /> {metal}
                   </label>

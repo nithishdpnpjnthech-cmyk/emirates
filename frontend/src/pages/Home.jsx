@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Star, ShieldCheck, Truck, RefreshCcw } from 'lucide-react';
 
 const Home = () => {
+  const navigate = useNavigate();
   const banners = [
     {
       image: '/assets/banner/jewellery/Brand-Ambassador-Slider.png',
@@ -80,18 +82,18 @@ const Home = () => {
 
 
   const quickLinksData = [
-    { title: "Fast Ships", img: "/assets/quicklinks/fast_ships.png" },
-    { title: "Best Sellers", img: "/assets/quicklinks/best_sellers.png" },
-    { title: "New Arrivals", img: "/assets/quicklinks/new_arrivals.png" },
-    { title: "Coins & Bars", img: "/assets/quicklinks/coins_bars.png" },
-    { title: "Coin Pendants", img: "/assets/quicklinks/coin_pendants.png" },
-    { title: "Silver Coins", img: "/assets/quicklinks/silver_coins.png" },
-    { title: "Gold Jhumka", img: "/assets/occasion/Earrings.png" },
-    { title: "Ring", img: "/assets/occasion/Rings.png" },
-    { title: "Bangle", img: "/assets/occasion/Bangles.png" },
-    { title: "Earring", img: "/assets/diamond/diamond-earring.jpg" },
-    { title: "Mangalsutra", img: "/assets/occasion/Mangalsutra.png" },
-    { title: "Gold Chain", img: "/assets/gold/chains.png" }
+    { title: "Fast Ships", img: "/assets/quicklinks/fast_ships.png", path: "/gold" },
+    { title: "Best Sellers", img: "/assets/quicklinks/best_sellers.png", path: "/gold" },
+    { title: "New Arrivals", img: "/assets/quicklinks/new_arrivals.png", path: "/gold" },
+    { title: "Coins & Bars", img: "/assets/quicklinks/coins_bars.png", path: "/gold" },
+    { title: "Coin Pendants", img: "/assets/quicklinks/coin_pendants.png", path: "/gold/pendants" },
+    { title: "Silver Coins", img: "/assets/quicklinks/silver_coins.png", path: "/gold" },
+    { title: "Gold Jhumka", img: "/assets/occasion/Earrings.png", path: "/gold/earrings" },
+    { title: "Ring", img: "/assets/occasion/Rings.png", path: "/gold/rings" },
+    { title: "Bangle", img: "/assets/occasion/Bangles.png", path: "/gold/bangles" },
+    { title: "Earring", img: "/assets/diamond/diamond-earring.jpg", path: "/diamond/earrings" },
+    { title: "Mangalsutra", img: "/assets/occasion/Mangalsutra.png", path: "/gold/mangalsutra" },
+    { title: "Gold Chain", img: "/assets/gold/chains.png", path: "/gold/chain" }
   ];
 
   return (
@@ -106,7 +108,8 @@ const Home = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
             className="slide"
-            style={{ backgroundImage: `url(${banners[currentSlide].image})` }}
+            style={{ backgroundImage: `url(${banners[currentSlide].image})`, cursor: 'pointer' }}
+            onClick={() => navigate('/gold')}
           />
         </AnimatePresence>
 
@@ -131,7 +134,7 @@ const Home = () => {
         <div className="container">
           <div className="quick-links-container">
             {quickLinksData.map((link, idx) => (
-              <div className="quick-link-item" key={idx}>
+              <div className="quick-link-item" key={idx} onClick={() => navigate(link.path)}>
                 <div className="quick-link-img-wrapper">
                   <img src={link.img} alt={link.title} className="quick-link-img" />
                 </div>
@@ -150,20 +153,20 @@ const Home = () => {
             <p className="subtitle">Sparkle through the events with timeless diamonds</p>
           </div>
           <div className="diamond-grid">
-            <div className="diamond-main">
+            <div className="diamond-main" onClick={() => navigate('/diamond/necklaces')} style={{ cursor: 'pointer' }}>
               <img src="/assets/diamond/diamond-necklace.jpg" alt="Diamond Necklace" />
             </div>
             <div className="diamond-subgrid">
-              <div className="diamond-item">
+              <div className="diamond-item" onClick={() => navigate('/diamond/rings')} style={{ cursor: 'pointer' }}>
                 <img src="/assets/diamond/diamond-ring.jpg" alt="Sleek Rings" />
               </div>
-              <div className="diamond-item">
+              <div className="diamond-item" onClick={() => navigate('/diamond/bangles')} style={{ cursor: 'pointer' }}>
                 <img src="/assets/diamond/diamond-bangle.jpg" alt="Elegant Bangles" />
               </div>
-              <div className="diamond-item">
+              <div className="diamond-item" onClick={() => navigate('/diamond/earrings')} style={{ cursor: 'pointer' }}>
                 <img src="/assets/diamond/diamond-earring.jpg" alt="Stunning Earrings" />
               </div>
-              <div className="diamond-item">
+              <div className="diamond-item" onClick={() => navigate('/diamond/mangalsutra')} style={{ cursor: 'pointer' }}>
                 <img src="/assets/diamond/diamond-mangalsutra.jpg" alt="Stylish Mangalsutras" />
               </div>
             </div>
@@ -180,28 +183,28 @@ const Home = () => {
             <p className="subtitle">Our Exclusive Earring Collection</p>
           </div>
           <div className="earring-grid">
-            <div className="earring-card">
+            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
               <img src="/assets/gold_menu/Earrings-Menu.png" alt="Studs Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>STUDS</h3>
                 <p>Collection</p>
               </div>
             </div>
-            <div className="earring-card">
+            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
               <img src="/assets/occasion/Earrings.png" alt="Jhumkas Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>Jhumkas</h3>
                 <p>Collection</p>
               </div>
             </div>
-            <div className="earring-card">
+            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
               <img src="/assets/gold/earrings.png" alt="Drops Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>Drops</h3>
                 <p>Collection</p>
               </div>
             </div>
-            <div className="earring-card">
+            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
               <img src="/assets/occasion/Earrings.png" alt="Hoops-Balis Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>Hoops-Balis</h3>
@@ -220,25 +223,25 @@ const Home = () => {
             <p className="subtitle">Capturing timeless grace in each precious stone</p>
           </div>
           <div className="gemstone-grid">
-            <div className="gemstone-card">
+            <div className="gemstone-card" onClick={() => navigate('/gold/necklaces')}>
               <img src="/assets/quicklinks/gemstone_necklace.png" alt="Gemstone Necklaces" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Necklaces</h3>
               </div>
             </div>
-            <div className="gemstone-card">
+            <div className="gemstone-card" onClick={() => navigate('/gold/rings')}>
               <img src="/assets/quicklinks/gemstone_rings.png" alt="Gemstone Rings" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Rings</h3>
               </div>
             </div>
-            <div className="gemstone-card">
+            <div className="gemstone-card" onClick={() => navigate('/gold/earrings')}>
               <img src="/assets/quicklinks/gemstone_earrings.png" alt="Gemstone Earrings" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Earrings</h3>
               </div>
             </div>
-            <div className="gemstone-card">
+            <div className="gemstone-card" onClick={() => navigate('/gold/bangles')}>
               <img src="/assets/quicklinks/gemstone_bangles.png" alt="Gemstone Bangles" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Bangles</h3>
@@ -256,41 +259,41 @@ const Home = () => {
             <p className="subtitle">Explore elegant collections designed to match every milestone—from your first gift to your forever vows.</p>
           </div>
           <div className="occasion-grid">
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/rings')}>
               <img src="/assets/occasion/Rings.png" alt="Rings" />
               <h4>Rings</h4>
             </div>
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/necklaces')}>
               <img src="/assets/occasion/Necklaces.png" alt="Necklaces" />
               <h4>Necklaces</h4>
             </div>
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/mangalsutra')}>
               <img src="/assets/occasion/Mangalsutra.png" alt="Mangalsutra" />
               <h4>Mangalsutra</h4>
             </div>
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/earrings')}>
               <img src="/assets/occasion/Earrings.png" alt="Earrings" />
               <h4>Earrings</h4>
             </div>
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/haarams')}>
               <img src="/assets/occasion/Home-Haarams.png" alt="Haarams" />
               <h4>Haarams</h4>
             </div>
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/kadaas')}>
               <img src="/assets/occasion/Kadaas.png" alt="Kadaas" />
               <h4>Kadaas</h4>
             </div>
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/bangles')}>
               <img src="/assets/occasion/Bangles.png" alt="Bangles" />
               <h4>Bangles</h4>
             </div>
-            <div className="occasion-card">
+            <div className="occasion-card" onClick={() => navigate('/gold/pendants')}>
               <img src="/assets/occasion/Pendants.png" alt="Pendants" />
               <h4>Pendants</h4>
             </div>
           </div>
           <div className="text-center mt-5">
-            <button className="btn btn-primary" style={{ backgroundColor: '#B28713', borderColor: '#B28713' }}>View All Collections</button>
+            <button className="btn btn-primary" onClick={() => navigate('/gold')} style={{ backgroundColor: '#B28713', borderColor: '#B28713' }}>View All Collections</button>
           </div>
         </div>
       </section>
@@ -308,7 +311,7 @@ const Home = () => {
             </div>
             <div className="bridal-image-wrapper">
               <div className="bridal-decor-frame">
-                <div className="bridal-arch-slider">
+                <div className="bridal-arch-slider" onClick={() => navigate('/collections/bridal')} style={{ cursor: 'pointer' }}>
                   <AnimatePresence mode='wait'>
                     <motion.div
                       key={currentBridalSlide}
@@ -335,37 +338,37 @@ const Home = () => {
             <p className="subtitle">Fine jewellery for life's meaningful moments</p>
           </div>
           <div className="gold-grid">
-            <div className="gold-card bg-blush">
+            <div className="gold-card bg-blush" onClick={() => navigate('/gold/chain')}>
               <div className="gold-content">
                 <h3>Elegant<br />Chains</h3>
               </div>
               <img src="/assets/gold/chains.png" alt="Elegant Chains" className="gold-img gold-multichain" />
             </div>
-            <div className="gold-card bg-sand">
+            <div className="gold-card bg-sand" onClick={() => navigate('/gold/rings')}>
               <div className="gold-content">
                 <h3>Stunning<br />Ring</h3>
               </div>
               <img src="/assets/gold/ring.png" alt="Stunning Ring" className="gold-img gold-ring" />
             </div>
-            <div className="gold-card bg-peach">
+            <div className="gold-card bg-peach" onClick={() => navigate('/gold/mangalsutra')}>
               <div className="gold-content">
                 <h3>Modern<br />Mangalsutras</h3>
               </div>
               <img src="/assets/gold/mangalsutra.png" alt="Modern Mangalsutras" className="gold-img gold-mangalsutra" />
             </div>
-            <div className="gold-card bg-beige">
+            <div className="gold-card bg-beige" onClick={() => navigate('/gold/pendants')}>
               <div className="gold-content">
                 <h3>Trendy<br />Pendants</h3>
               </div>
               <img src="/assets/gold/pendant.png" alt="Trendy Pendants" className="gold-img gold-pendant" />
             </div>
-            <div className="gold-card bg-taupe">
+            <div className="gold-card bg-taupe" onClick={() => navigate('/gold/bangles')}>
               <div className="gold-content">
                 <h3>Gorgeous<br />Bangles</h3>
               </div>
               <img src="/assets/gold/bangles.png" alt="Gorgeous Bangles" className="gold-img gold-bangles" />
             </div>
-            <div className="gold-card bg-warm-sand">
+            <div className="gold-card bg-warm-sand" onClick={() => navigate('/gold/earrings')}>
               <div className="gold-content">
                 <h3>Stylish<br />Earrings</h3>
               </div>
@@ -383,7 +386,7 @@ const Home = () => {
             <p className="subtitle">Discover our latest jewellery collection!</p>
           </div>
           <div className="collection-grid">
-            <div className="collection-card" style={{ backgroundImage: "url('/assets/collections/mens.png')" }}>
+            <div className="collection-card" onClick={() => navigate('/gold')} style={{ backgroundImage: "url('/assets/collections/mens.png')", cursor: 'pointer' }}>
               <div className="collection-card-overlay"></div>
               <div className="collection-card-content">
                 <h3 className="collection-title-mens">LEGENDZ</h3>
@@ -394,7 +397,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="collection-card" style={{ backgroundImage: "url('/assets/collections/kids.png')" }}>
+            <div className="collection-card" onClick={() => navigate('/gold')} style={{ backgroundImage: "url('/assets/collections/kids.png')", cursor: 'pointer' }}>
               <div className="collection-card-overlay"></div>
               <div className="collection-card-content">
                 <h3 className="collection-title-kids">STARLET</h3>
@@ -405,7 +408,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="collection-card" style={{ backgroundImage: "url('/assets/collections/traditional.png')" }}>
+            <div className="collection-card" onClick={() => navigate('/collections/traditional')} style={{ backgroundImage: "url('/assets/collections/traditional.png')", cursor: 'pointer' }}>
               <div className="collection-card-overlay"></div>
               <div className="collection-card-content">
                 <h3 className="collection-title-sankha">Sankha Pola</h3>
@@ -452,7 +455,7 @@ const Home = () => {
             <h2>Experience us in seconds</h2>
           </div>
           <div className="video-grid">
-            <div className="video-card">
+            <div className="video-card" onClick={() => navigate('/diamond')} style={{ cursor: 'pointer' }}>
               <video
                 src="/assets/video/diamond_size.mp4"
                 className="experience-video-element"
@@ -462,7 +465,7 @@ const Home = () => {
                 playsInline
               />
             </div>
-            <div className="video-card">
+            <div className="video-card" onClick={() => navigate('/diamond')} style={{ cursor: 'pointer' }}>
               <video
                 src="/assets/video/diamond1.mp4"
                 className="experience-video-element"
@@ -472,7 +475,7 @@ const Home = () => {
                 playsInline
               />
             </div>
-            <div className="video-card">
+            <div className="video-card" onClick={() => navigate('/gold')} style={{ cursor: 'pointer' }}>
               <video
                 src="/assets/video/gold.mp4"
                 className="experience-video-element"
@@ -482,7 +485,7 @@ const Home = () => {
                 playsInline
               />
             </div>
-            <div className="video-card">
+            <div className="video-card" onClick={() => navigate('/diamond')} style={{ cursor: 'pointer' }}>
               <video
                 src="/assets/video/diamond2.mp4"
                 className="experience-video-element"
