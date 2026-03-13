@@ -40,6 +40,14 @@ const ProductDetail = () => {
                 setProduct(response.data);
             } catch (error) {
                 console.error('Error fetching product:', error);
+                if (error.response) {
+                    console.error('Data:', error.response.data);
+                    console.error('Status:', error.response.status);
+                } else if (error.request) {
+                    console.error('Request:', error.request);
+                } else {
+                    console.error('Message:', error.message);
+                }
             } finally {
                 setLoading(false);
             }
@@ -57,6 +65,7 @@ const ProductDetail = () => {
             });
             setSubmitted(true);
         } catch (error) {
+            console.error('Error sending enquiry:', error);
             alert('Error sending enquiry. Please try again.');
         } finally {
             setSubmitting(false);

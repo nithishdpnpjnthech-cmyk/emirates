@@ -86,6 +86,14 @@ const CollectionPage = () => {
                 setProducts(shuffleArray(filtered));
             } catch (error) {
                 console.error("Error fetching collection products:", error);
+                if (error.response) {
+                    console.error('Data:', error.response.data);
+                    console.error('Status:', error.response.status);
+                } else if (error.request) {
+                    console.error('Request:', error.request);
+                } else {
+                    console.error('Message:', error.message);
+                }
             } finally {
                 setLoading(false);
             }
