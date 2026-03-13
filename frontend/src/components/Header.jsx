@@ -576,42 +576,54 @@ const Header = () => {
           }
           .mega-menu-grid {
             grid-template-columns: repeat(2, 1fr);
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid #f9f9f9;
+            background: #fff;
           }
           .mega-menu-item {
-            gap: 0.8rem;
-            padding: 1.2rem 1rem;
-            border-bottom: 1px solid #f0f0f0;
-            border-right: 1px solid #f0f0f0;
+            display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 1rem;
+            gap: 0.8rem;
+            border-bottom: 1px solid #f9f9f9;
+            border-right: 1px solid #f9f9f9;
             text-align: center;
           }
           .mega-menu-item:nth-child(2n) {
             border-right: none;
           }
           .mega-menu-item img {
-            width: 32px;
-            height: 32px;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.3rem;
           }
           .mega-menu-item span {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            color: #6a4439;
+            font-weight: 500;
+          }
+          .collections-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            padding: 1rem !important;
+            gap: 1rem !important;
+            background: #fff;
+          }
+          .collection-mega-menu-item {
+            border: none;
+            padding: 0;
+          }
+          .collection-mega-menu-item img {
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
           }
           .mega-menu-featured {
             display: none;
           }
-          .collections-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            padding: 1rem;
-            gap: 1rem;
-          }
-          .collection-mega-menu-item {
-            margin-bottom: 0;
-          }
           .dropdown-item {
-            padding: 0.8rem 2.5rem;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.95rem !important;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f9f9f9;
           }
         }
       `}} />

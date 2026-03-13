@@ -183,28 +183,28 @@ const Home = () => {
             <p className="subtitle">Our Exclusive Earring Collection</p>
           </div>
           <div className="earring-grid">
-            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
+            <div className="earring-card" onClick={() => navigate('/products?category=Earrings')}>
               <img src="/assets/gold_menu/Earrings-Menu.png" alt="Studs Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>STUDS</h3>
                 <p>Collection</p>
               </div>
             </div>
-            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
+            <div className="earring-card" onClick={() => navigate('/products?category=Earrings')}>
               <img src="/assets/occasion/Earrings.png" alt="Jhumkas Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>Jhumkas</h3>
                 <p>Collection</p>
               </div>
             </div>
-            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
+            <div className="earring-card" onClick={() => navigate('/products?category=Earrings')}>
               <img src="/assets/gold/earrings.png" alt="Drops Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>Drops</h3>
                 <p>Collection</p>
               </div>
             </div>
-            <div className="earring-card" onClick={() => navigate('/gold/earrings')}>
+            <div className="earring-card" onClick={() => navigate('/products?category=Earrings')}>
               <img src="/assets/occasion/Earrings.png" alt="Hoops-Balis Collection" className="earring-img" />
               <div className="earring-content">
                 <h3>Hoops-Balis</h3>
@@ -223,25 +223,25 @@ const Home = () => {
             <p className="subtitle">Capturing timeless grace in each precious stone</p>
           </div>
           <div className="gemstone-grid">
-            <div className="gemstone-card" onClick={() => navigate('/gold/necklaces')}>
+            <div className="gemstone-card" onClick={() => navigate('/products?category=Necklaces')}>
               <img src="/assets/quicklinks/gemstone_necklace.png" alt="Gemstone Necklaces" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Necklaces</h3>
               </div>
             </div>
-            <div className="gemstone-card" onClick={() => navigate('/gold/rings')}>
+            <div className="gemstone-card" onClick={() => navigate('/products?category=Rings')}>
               <img src="/assets/quicklinks/gemstone_rings.png" alt="Gemstone Rings" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Rings</h3>
               </div>
             </div>
-            <div className="gemstone-card" onClick={() => navigate('/gold/earrings')}>
+            <div className="gemstone-card" onClick={() => navigate('/products?category=Earrings')}>
               <img src="/assets/quicklinks/gemstone_earrings.png" alt="Gemstone Earrings" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Earrings</h3>
               </div>
             </div>
-            <div className="gemstone-card" onClick={() => navigate('/gold/bangles')}>
+            <div className="gemstone-card" onClick={() => navigate('/products?category=Bangles')}>
               <img src="/assets/quicklinks/gemstone_bangles.png" alt="Gemstone Bangles" className="gemstone-img" />
               <div className="gemstone-overlay">
                 <h3>Bangles</h3>
@@ -307,7 +307,7 @@ const Home = () => {
               <p>Emirates Gold International is your trusted partner for exquisite bridal collections, specializing exclusively in gold and diamond products. Our curated selection features timeless designs and contemporary styles, crafted to make every bride shine on her special day.</p>
               <br />
               <p>With a commitment to quality, authenticity, and exceptional service, Emirates Gold International ensures that your wedding jewellery is as unique and memorable as your celebration.</p>
-              <button className="btn btn-primary btn-bridal mt-4">Explore Bridal Collections</button>
+              <button className="btn btn-primary btn-bridal mt-4" onClick={() => navigate('/collections/bridal')}>Explore Bridal Collections</button>
             </div>
             <div className="bridal-image-wrapper">
               <div className="bridal-decor-frame">
@@ -408,7 +408,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="collection-card" onClick={() => navigate('/collections/traditional')} style={{ backgroundImage: "url('/assets/collections/traditional.png')", cursor: 'pointer' }}>
+            <div className="collection-card" onClick={() => navigate('/gold')} style={{ backgroundImage: "url('/assets/collections/traditional.png')", cursor: 'pointer' }}>
               <div className="collection-card-overlay"></div>
               <div className="collection-card-content">
                 <h3 className="collection-title-sankha">Sankha Pola</h3>

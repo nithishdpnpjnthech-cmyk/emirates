@@ -13,7 +13,7 @@ const ProductList = ({ metalType: propMetalType }) => {
 
   const category = urlCategory || searchParams.get('category');
   const queryMetalType = searchParams.get('metalType');
-  const metalType = propMetalType || queryMetalType || 'Gold'; // Default to Gold if neither is present
+  const metalType = propMetalType || queryMetalType; // No hard default to 'Gold' here
 
   // Filter States
   const [minPrice, setMinPrice] = useState('');
@@ -22,14 +22,22 @@ const ProductList = ({ metalType: propMetalType }) => {
 
   const handleCategoryChange = (cat) => {
     const newCategory = (category === cat) ? '' : cat.toLowerCase();
-    const base = metalType.toLowerCase();
-    navigate(newCategory ? `/${base}/${newCategory}` : `/${base}`);
+    
+    if (metalType) {
+      const base = metalType.toLowerCase();
+      navigate(newCategory ? `/${base}/${newCategory}` : `/${base}`);
+    } else {
+      navigate(newCategory ? `/products?category=${newCategory}` : `/products`);
+    }
   };
 
   const handleMetalChange = (metal) => {
     const newMetal = metal.toLowerCase();
-    const cat = category ? `/${category.toLowerCase()}` : '';
-    navigate(`/${newMetal}${cat}`);
+    if (category) {
+      navigate(`/${newMetal}/${category.toLowerCase()}`);
+    } else {
+      navigate(`/${newMetal}`);
+    }
   };
 
   useEffect(() => {
